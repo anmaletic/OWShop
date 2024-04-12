@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
+import logo from "../assets/owshop_logo.png";
 
 const NavBar = () => {
   const location = useLocation();
@@ -12,12 +13,12 @@ const NavBar = () => {
         data-bs-theme="dark"
       >
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
+          <Link className="navbar-brand navbar-ext" to="/">
             <div
               data-bs-toggle="collapse"
               data-bs-target=".navbar-collapse.show"
             >
-              Home
+              <img src={logo} alt="OWShop" height="34" />
             </div>
           </Link>
 
