@@ -40,7 +40,7 @@ const HomePage = () => {
 
   return (
     <>
-      <div className="page-wrapper">
+      <div className="home-page">
         <div className="landing-page bg-danger">
           <img className="logo-background" src="../vite.svg" />
           <img className="logo-image" src={logo} />
@@ -78,7 +78,7 @@ const HomePage = () => {
 
         <div className="footer">
           <div>
-            <p>OWsShop © 2024 OWShop. All rights reserved.</p>
+            <p>OWShop © 2024 OWShop. All rights reserved.</p>
           </div>
         </div>
       </div>
