@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Product } from "../interfaces/product";
-import newProduct from "../assets/newProduct.jpg";
-import logo from "../assets/owshop_logo.png";
+import newProductImg from "../assets/newProduct.jpg";
+import logoImg from "../assets/owshop_logo.png";
+import addToCartImg from "../assets/add-to-cart.png";
 
 const HomePage = () => {
   const [displayProducts, setDisplayProducts] = useState<Product[]>([]);
@@ -43,7 +44,7 @@ const HomePage = () => {
       <div className="home-page">
         <div className="landing-page bg-danger">
           <img className="logo-background" src="../vite.svg" />
-          <img className="logo-image" src={logo} />
+          <img className="logo-image" src={logoImg} />
         </div>
 
         <div className="featured-wrapper">
@@ -52,19 +53,19 @@ const HomePage = () => {
             <div className="item">
               <img src={displayProducts[indexes[0]]?.image} alt="prod1" />
               <button className="btn btn-secondary btn-buynow">
-                Add to Cart
+                <img src={addToCartImg} />
               </button>
             </div>
             <div className="item">
               <img src={displayProducts[indexes[1]]?.image} alt="prod2" />
               <button className="btn btn-secondary btn-buynow">
-                Add to Cart
+                <img src={addToCartImg} />
               </button>
             </div>
             <div className="item">
               <img src={displayProducts[indexes[2]]?.image} alt="prod3" />
               <button className="btn btn-secondary btn-buynow">
-                Add to Cart
+                <img src={addToCartImg} />
               </button>
             </div>
           </div>
@@ -72,7 +73,7 @@ const HomePage = () => {
 
         <div className="jumbotron">
           <h1 className="new-prod-text">New product</h1>
-          <img src={newProduct} alt="" />
+          <img src={newProductImg} alt="" />
           <h1 className="coming-soon-text">Coming soon</h1>
         </div>
 
