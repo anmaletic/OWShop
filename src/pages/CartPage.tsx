@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useCart } from "../contexts/CartContext";
+import { CartItem } from "../interfaces/cartItem";
 
 const CartPage: React.FC = () => {
   const { cartItems, updateItemQuantity, removeFromCart, clearCart } =
@@ -28,59 +29,46 @@ const CartPage: React.FC = () => {
       <div className="cart-page">
         <h1>Cart</h1>
 
-        <div className="cart-table">
-          <table className="table">
-            <thead>
-              <tr>
-                <th scope="col">Image</th>
-                <th scope="col">Title</th>
-                <th scope="col">Price</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Total Price</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-              {cartItems.map((cartItem) => (
-                <tr key={cartItem.id}>
-                  <td>
-                    <img
-                      src={cartItem.product.image}
-                      alt={cartItem.product.title}
-                      style={{ maxWidth: "100px" }}
-                    />
-                  </td>
-                  <td>{cartItem.product.title}</td>
-                  <td>${cartItem.product.price.toFixed(2)}</td>
-                  <td>
-                    <div className="d-flex">
-                      <button
-                        className="btn btn-quantity"
-                        onClick={() => handleQuantityChange(cartItem.id, -1)}
-                      >
-                        -
-                      </button>
-                      <p className="my-auto">{cartItem.quantity}</p>
-                      <button
-                        className="btn btn-quantity"
-                        onClick={() => handleQuantityChange(cartItem.id, 1)}
-                      >
-                        +
-                      </button>
-                    </div>
-                  </td>
-                  <td>${cartItem.totalPrice.toFixed(2)}</td>
-                  <td>
+        <ul className="cart-grid">
+          {cartItems?.map((item: CartItem) => (
+            <li className="cart-item-card" key={item.id}>
+              <div className="cart-item-header">
+                <h5>{item.product.title}</h5>
+              </div>
+              <div className="cart-item-content">
+                <div className="cart-item-image">
+                  <img src={item.product.image} alt={item.product.title} />
+                </div>
+
+                <div className="cart-item-details">
+                  <button
+                    className="btn btn-close"
+                    onClick={() => handleRemoveFromCart(item.id)}
+                  />
+                  <p>Total Price: ${item.totalPrice.toFixed(2)}</p>
+                  <div className="d-flex">
+                    <p>Quantity: </p>
                     <button
-                      className="btn btn-close"
-                      onClick={() => handleRemoveFromCart(cartItem.id)}
-                    />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+                      className="btn btn-quantity-left cart-item-quantity"
+                      onClick={() => handleQuantityChange(item.id, -1)}
+                    >
+                      -
+                    </button>
+                    <p className=" cart-item-quantity">{item.quantity}</p>
+                    <button
+                      className="btn btn-quantity-right cart-item-quantity"
+                      onClick={() => handleQuantityChange(item.id, 1)}
+                    >
+                      +
+                    </button>
+                  </div>
+
+                  <p>Price: ${item.product.price.toFixed(2)}</p>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
 
         <div className="cart-checkout">
           <h4>Total: ${totalPrice.toFixed(2)}</h4>
