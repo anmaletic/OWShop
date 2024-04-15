@@ -3,8 +3,10 @@ import { Product } from "../interfaces/product";
 import newProductImg from "../assets/newProduct.jpg";
 import logoImg from "../assets/owshop_logo.png";
 import addToCartImg from "../assets/add-to-cart.png";
+import { useCart } from "../contexts/CartContext";
 
 const HomePage = () => {
+  const { addToCart } = useCart();
   const [displayProducts, setDisplayProducts] = useState<Product[]>([]);
   const [indexes, setIndexes] = useState<number[]>([]);
 
@@ -39,6 +41,10 @@ const HomePage = () => {
     setIndexes(indexes);
   }, []);
 
+  const handleAddToCart = (product: Product) => {
+    addToCart(product);
+  };
+
   return (
     <>
       <div className="home-page">
@@ -52,19 +58,28 @@ const HomePage = () => {
           <div className="featured">
             <div className="item">
               <img src={displayProducts[indexes[0]]?.image} alt="prod1" />
-              <button className="btn btn-secondary btn-buynow">
+              <button
+                className="btn btn-secondary btn-buynow"
+                onClick={() => handleAddToCart(displayProducts[indexes[0]])}
+              >
                 <img src={addToCartImg} />
               </button>
             </div>
             <div className="item">
               <img src={displayProducts[indexes[1]]?.image} alt="prod2" />
-              <button className="btn btn-secondary btn-buynow">
+              <button
+                className="btn btn-secondary btn-buynow"
+                onClick={() => handleAddToCart(displayProducts[indexes[1]])}
+              >
                 <img src={addToCartImg} />
               </button>
             </div>
             <div className="item">
               <img src={displayProducts[indexes[2]]?.image} alt="prod3" />
-              <button className="btn btn-secondary btn-buynow">
+              <button
+                className="btn btn-secondary btn-buynow"
+                onClick={() => handleAddToCart(displayProducts[indexes[2]])}
+              >
                 <img src={addToCartImg} />
               </button>
             </div>
