@@ -25,6 +25,9 @@ RUN rm -rf /usr/share/nginx/html/*
 # Copy the built React app from the previous stage to the Nginx server directory
 COPY --from=build /app/dist /usr/share/nginx/html
 
+# Copy custom nginx configuration
+COPY default.conf /etc/nginx/conf.d/default.conf
+
 # Expose port 80 to the outside world
 EXPOSE 80
 
