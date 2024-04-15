@@ -5,6 +5,7 @@ import ContactPage from "./pages/ContactPage";
 import LoginPage from "./pages/LoginPage";
 import ProductsPage from "./pages/ProductsPage";
 import { CartProvider } from "./contexts/CartContext";
+import CartPage from "./pages/CartPage";
 
 const App: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const App: React.FC = () => {
               <Route path="/" element={<HomePage />} />
               <Route path="/products" element={<ProductsPage />} />
               <Route path="/contact" element={<ContactPage />} />
+              <Route path="/cart" element={<CartPage />} />
               <Route path="/login" element={<LoginPage />} />
             </Routes>
           </div>

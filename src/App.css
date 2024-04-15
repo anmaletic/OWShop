@@ -253,6 +253,31 @@
     }
 }
 
+/* Cart page */
+.cart-page {
+    padding: 0 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    gap: 50px;
+}
+
+.btn-quantity {
+    padding: 0 0.75rem;
+}
+
+.btn-checkout {
+    height: 40px;    
+}
+
+.cart-table {
+    padding: 0;
+    overflow-y: auto;
+    height: 100%;
+    width: 100%;
+}
 
 /* Login page */
 .login-page {
@@ -270,4 +295,12 @@
 .login-image img {
     width: 100%;
     height: 100%;
+}
+
+.cart-checkout {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    width: 100%;
+    padding: 10px;
 }
