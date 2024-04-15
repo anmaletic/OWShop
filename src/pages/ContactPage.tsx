@@ -44,7 +44,7 @@ const ContactPage = () => {
             <label htmlFor="message" className="form-label">
               Message
             </label>
-            <textarea className="form-control" id="exampleInputPassword1" />
+            <textarea className="form-control" id="message" />
           </div>
 
           <div className="mb-3 d-flex">
