@@ -47,7 +47,7 @@ const LoginPage = () => {
     <>
       <div className="login-page">
         <form
-          className="col-lg-6 col-md-6 col-sm-8 col-8 "
+          className="col-lg-8 col-md-6 col-sm-8 col-8 "
           onSubmit={handleSubmit}
         >
           <div className="login-image mb-3">
