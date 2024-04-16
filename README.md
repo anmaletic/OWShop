@@ -1,30 +1,28 @@
-# React + TypeScript + Vite
+# Demo page for a Web shop
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+#### Tech stack:
+- React
+- Typescript
+- Bootstrap
 
-Currently, two official plugins are available:
+#### Datasource:
+- [Fake Store API](https://fakestoreapi.com) - api used to fetch product data and simulate user login
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Functionality:
+- ##### User Interface 
+	- designed using React and styled with Bootstrap
+- ##### Product Display 
+	- products fetched from Fake Store API are displayed on products page with details like title, description, price, category and rating
+- ##### Cart Management 
+	- Users can add, remove and update quantity of products in their cart
+- ##### User Authentication 
+	- simulated user login
+- ##### Contact Page 
+	- provide users with means to contact webshop administrator
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+#### Key features:
+- ##### Responsive Design 
+	- page is optimized for various screen sizes
+- ##### Persistent Cart 
+	- cart items are stored in localStorage allowing users to continue shopping without loosing their selection
