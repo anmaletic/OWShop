@@ -1,4 +1,10 @@
-import { ReactNode, createContext, useContext, useState } from "react";
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { CartItem } from "../interfaces/cartItem";
 import { Product } from "../interfaces/product";
 
@@ -27,7 +33,11 @@ interface Props {
 }
 
 export const CartProvider: React.FC<Props> = ({ children }) => {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [cartItems, setCartItems] = useState<CartItem[]>(() =>
+    JSON.parse(localStorage.getItem("cartItems") || "[]")
+  );
+  const maxId =
+    cartItems.length > 0 ? Math.max(...cartItems.map((item) => item.id)) : 0;
 
   const addToCart = (product: Product) => {
     const existingItem = cartItems.find(
@@ -38,7 +48,7 @@ export const CartProvider: React.FC<Props> = ({ children }) => {
       updateItemQuantity(existingItem.id, 1);
     } else {
       const newItem: CartItem = {
-        id: cartItems.length + 1,
+        id: maxId + 1,
         product: product,
         quantity: 1,
         totalPrice: product.price * 1,
@@ -76,6 +86,10 @@ export const CartProvider: React.FC<Props> = ({ children }) => {
         .filter((item) => item.quantity > 0)
     );
   };
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   return (
     <CartContext.Provider
