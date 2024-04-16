@@ -1,18 +1,30 @@
-import { FormEvent, useState } from "react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import loginImg from "../assets/login.jpg";
 
-const LoginPage = () => {
+interface IFormInput {
+  username: string;
+  password: string;
+}
+
+const schema = yup.object().shape({
+  username: yup.string().required("Username is required"),
+  password: yup.string().required("Password is required"),
+});
+
+const LoginPage: React.FC = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormInput>({ resolver: yupResolver(schema) });
+
   let userToken = "";
   const [message, setMessage] = useState("");
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-
-    const target = e.target as typeof e.target & {
-      username: { value: string };
-      password: { value: string };
-    };
-
+  const onSubmit = async (data: IFormInput) => {
     try {
       await fetch("https://fakestoreapi.com/auth/login", {
         method: "POST",
@@ -20,8 +32,8 @@ const LoginPage = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username: target.username.value,
-          password: target.password.value,
+          username: data.username,
+          password: data.password,
         }),
       })
         .then((response) => response.json())
@@ -48,7 +60,7 @@ const LoginPage = () => {
       <div className="login-page">
         <form
           className="col-lg-8 col-md-6 col-sm-8 col-8 "
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit)}
         >
           <div className="login-image mb-3">
             <img src={loginImg} alt="Image" />
@@ -58,14 +70,30 @@ const LoginPage = () => {
             <label htmlFor="username" className="form-label">
               Username (mor_2314)
             </label>
-            <input type="text" className="form-control" id="username" />
+            <input
+              type="username"
+              className="form-control"
+              id="username"
+              {...register("username")}
+            />
+            {errors.username && (
+              <p className="error">{errors.username.message}</p>
+            )}
           </div>
 
           <div className="flex-grow-1 mb-3">
             <label htmlFor="password" className="form-label">
               Password (83r5^_)
             </label>
-            <input type="password" className="form-control" id="password" />
+            <input
+              type="password"
+              className="form-control"
+              id="password"
+              {...register("password")}
+            />{" "}
+            {errors.password && (
+              <p className="error">{errors.password.message}</p>
+            )}
           </div>
 
           <div className="mb-3 d-flex">
