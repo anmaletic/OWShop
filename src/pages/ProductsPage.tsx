@@ -1,26 +1,17 @@
 import { useEffect, useState } from "react";
 import { Product } from "../interfaces/product";
 import { useCart } from "../contexts/CartContext";
+import { fetchProducts } from "../services/apiService";
 
 const ProductsPage: React.FC = () => {
   const { addToCart, cartItems } = useCart();
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("https://fakestoreapi.com/products");
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
-        const data = await response.json();
-        setProducts(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
+    const fetchDisplayProducts = async () => {
+      setProducts(await fetchProducts());
     };
-
-    fetchData();
+    fetchDisplayProducts();
   }, []);
 
   const handleAddToCart = (product: Product) => {
