@@ -2,16 +2,22 @@ import { useEffect, useState } from "react";
 import { Product } from "../interfaces/product";
 import { useCart } from "../contexts/CartContext";
 import { fetchProducts } from "../services/apiService";
+import ProductCard from "../components/ProductCard";
 
 const ProductsPage: React.FC = () => {
   const { addToCart, cartItems } = useCart();
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    const fetchDisplayProducts = async () => {
+    // simulate loading time
+    setTimeout(async () => {
       setProducts(await fetchProducts());
-    };
-    fetchDisplayProducts();
+    }, 1000);
+
+    // const fetchDisplayProducts = async () => {
+    //   setProducts(await fetchProducts());
+    // };
+    // fetchDisplayProducts();
   }, []);
 
   const handleAddToCart = (product: Product) => {
@@ -25,40 +31,34 @@ const ProductsPage: React.FC = () => {
 
   return (
     <>
-      <div className="container-xxl product-page">
-        <h1>Products</h1>
-        <ul className="product-grid ">
-          {products?.map((product: Product) => (
-            <li className="product-card" key={product.id}>
-              <div className="product-header">
-                <h3>{product.title}</h3>
-              </div>
-              <div className="product-content">
-                <div className="product-image">
-                  <img src={product.image} alt={product.title} />
-                </div>
+      <div className="container-xxl py-3">
+        <div>
+          <h1 className="display-3 text-center">Products</h1>
+        </div>
 
-                <div className="product-description">
-                  <p>{product.description}</p>
-                  <p>Price: ${product.price.toFixed(2)}</p>
-                  <p>Category: {product.category}</p>
-                  <p>
-                    Rating: {product.rating.rate} ({product.rating.count})
-                    reviews
-                  </p>
-                </div>
-              </div>
-              <div className="d-flex flex-row-reverse">
-                <button
-                  className="btn btn-secondary"
-                  onClick={() => handleAddToCart(product)}
-                >
-                  Add to cart
-                </button>
-              </div>
-            </li>
-          ))}
-        </ul>
+        <div className="d-flex flex-column flex-md-row justify-content-between my-3">
+          <div className="row row-cols-1 row-cols-md-3 row-cols-xxl-4  justify-content-center justify-content-md-start">
+            {products.length === 0
+              ? [...Array(10)].map((_, i) => (
+                  <div className="col mb-3" key={i}>
+                    {ProductCard({
+                      product: null,
+                      key: i,
+                      onClick: handleAddToCart,
+                    })}
+                  </div>
+                ))
+              : products?.map((product: Product) => (
+                  <div className="col mb-3" key={product.id}>
+                    {ProductCard({
+                      product,
+                      key: product.id,
+                      onClick: handleAddToCart,
+                    })}
+                  </div>
+                ))}
+          </div>
+        </div>
 
         <div className="footer">
           <div>
