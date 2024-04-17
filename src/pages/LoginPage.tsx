@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import loginImg from "../assets/login.jpg";
+import { login } from "../services/apiService";
 
 interface IFormInput {
   username: string;
@@ -26,21 +27,7 @@ const LoginPage: React.FC = () => {
 
   const onSubmit = async (data: IFormInput) => {
     try {
-      await fetch("https://fakestoreapi.com/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: data.username,
-          password: data.password,
-        }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          // Handle response data
-          userToken = data.token;
-        });
+      userToken = await login(data.username, data.password);
 
       if (userToken != "") {
         console.log("Login successful!");
