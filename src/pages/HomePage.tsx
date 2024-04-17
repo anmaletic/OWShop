@@ -4,6 +4,7 @@ import newProductImg from "../assets/newProduct.jpg";
 import logoImg from "../assets/owshop_logo.png";
 import addToCartImg from "../assets/add-to-cart.png";
 import { useCart } from "../contexts/CartContext";
+import { fetchProducts } from "../services/apiService";
 
 const HomePage = () => {
   const { addToCart } = useCart();
@@ -11,20 +12,10 @@ const HomePage = () => {
   const [indexes, setIndexes] = useState<number[]>([]);
 
   useEffect(() => {
-    const getDisplayProducts = async () => {
-      try {
-        const response = await fetch("https://fakestoreapi.com/products");
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
-        const data = await response.json();
-        setDisplayProducts(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
+    const fetchDisplayProducts = async () => {
+      setDisplayProducts(await fetchProducts());
     };
-
-    getDisplayProducts();
+    fetchDisplayProducts();
 
     const generateUniqueRandomIndexes = (
       count: number,
