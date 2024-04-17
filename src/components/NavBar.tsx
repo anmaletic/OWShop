@@ -12,7 +12,7 @@ const NavBar = () => {
         className="navbar navbar-expand-lg bg-dark fixed-top"
         data-bs-theme="dark"
       >
-        <div className="container-fluid">
+        <div className="container-xxl">
           <Link className="navbar-brand navbar-ext" to="/">
             <div
               data-bs-toggle="collapse"

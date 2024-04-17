@@ -57,7 +57,7 @@ const LoginPage: React.FC = () => {
 
   return (
     <>
-      <div className="login-page">
+      <div className="container-xxl login-page">
         <form
           className="col-lg-8 col-md-6 col-sm-8 col-8 "
           onSubmit={handleSubmit(onSubmit)}

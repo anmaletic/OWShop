@@ -26,7 +26,7 @@ const CartPage: React.FC = () => {
 
   return (
     <>
-      <div className="cart-page">
+      <div className="container-xxl cart-page">
         <h1>Cart</h1>
 
         <ul className="cart-grid">
