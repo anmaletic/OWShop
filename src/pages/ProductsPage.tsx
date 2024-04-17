@@ -34,7 +34,7 @@ const ProductsPage: React.FC = () => {
 
   return (
     <>
-      <div className="product-page">
+      <div className="container-xxl product-page">
         <h1>Products</h1>
         <ul className="product-grid ">
           {products?.map((product: Product) => (
