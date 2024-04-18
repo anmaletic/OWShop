@@ -63,66 +63,6 @@
     }
 }
 
-.featured-wrapper {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #ccc;
-    justify-content: center;
-    align-items: center;
-    width: 90%;
-}
-
-@media (orientation: portrait) and (max-width: 768px) {
-    .featured-wrapper {
-        height: fit-content;
-    }
-}
-
-.featured {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10%;
-    margin: 20px 5%;
-
-}
-
-@media (orientation: portrait) and (max-width: 768px) {
-    .featured {
-        flex-direction: column;
-        gap: 70px;
-    }
-}
-  
-.item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #ccc;
-    padding: 20px;
-    flex: 1;
-    text-align: center;
-    position: relative;
-    height: 100%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-@media (orientation: portrait) and (max-width: 768px) {
-    .item {
-        width: 70%;
-    }
-}
-
-.item img {
-    width: 100%;
-}
-
-.btn-buynow {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-}
-
 .jumbotron {
     display: flex;
     padding: 10px;
@@ -173,64 +113,6 @@
     height: 100%;
     gap: 50px;
 }
-
-.product-grid {
-    padding: 0 50px;
-    display: flex;
-    flex-wrap: wrap;
-    overflow-y: auto;
-    height: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-}
-
-@media (max-width: 768px) {
-    .product-grid {
-        padding: 0 20px;
-    }
-}
-
-.product-card {
-    display: flex;
-    flex-direction: column;
-    flex: 1 1 400px;
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  }
-
-.product-header {
-    flex: 1;
-}
-
-.product-content {
-    display: flex;
-    flex-direction: row;
-    flex: 4
-}
-
-@media (max-width: 768px) {
-    .product-content {
-        flex-direction: column;
-    }
-}
-
-.product-image {    
-    flex: 1;
-}
-
-.product-image img {
-    max-width: 100%;
-}
-
-.product-description {
-    flex: 4;
-    margin: 20px;
-}
-
-
 
 /* Contact page */
 .contact-page {
