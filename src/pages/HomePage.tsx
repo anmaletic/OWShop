@@ -2,21 +2,15 @@ import { useEffect, useState } from "react";
 import { Product } from "../interfaces/product";
 import newProductImg from "../assets/newProduct.jpg";
 import logoImg from "../assets/owshop_logo.png";
-import addToCartImg from "../assets/add-to-cart.png";
 import { useCart } from "../contexts/CartContext";
-import { fetchProducts } from "../services/apiService";
+import { fetchProductById } from "../services/apiService";
+import ProductCard from "../components/ProductCard";
 
 const HomePage = () => {
   const { addToCart } = useCart();
-  const [displayProducts, setDisplayProducts] = useState<Product[]>([]);
-  const [indexes, setIndexes] = useState<number[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    const fetchDisplayProducts = async () => {
-      setDisplayProducts(await fetchProducts());
-    };
-    fetchDisplayProducts();
-
     const generateUniqueRandomIndexes = (
       count: number,
       maxIndex: number
@@ -29,7 +23,20 @@ const HomePage = () => {
     };
 
     const indexes = generateUniqueRandomIndexes(3, 19);
-    setIndexes(indexes);
+
+    const fetchAndSetProducts = async () => {
+      const promises = indexes.map(async (productId) => {
+        return fetchProductById(productId);
+      });
+
+      // simulate loading time
+      setTimeout(async () => {
+        const tempProduct = await Promise.all(promises);
+        setProducts(tempProduct);
+      }, 1000);
+    };
+
+    fetchAndSetProducts();
   }, []);
 
   const handleAddToCart = (product: Product) => {
@@ -44,36 +51,27 @@ const HomePage = () => {
           <img className="logo-image" src={logoImg} />
         </div>
 
-        <div className="featured-wrapper">
-          <h1>Featured products</h1>
-          <div className="featured">
-            <div className="item">
-              <img src={displayProducts[indexes[0]]?.image} alt="prod1" />
-              <button
-                className="btn btn-secondary btn-buynow"
-                onClick={() => handleAddToCart(displayProducts[indexes[0]])}
-              >
-                <img src={addToCartImg} />
-              </button>
-            </div>
-            <div className="item">
-              <img src={displayProducts[indexes[1]]?.image} alt="prod2" />
-              <button
-                className="btn btn-secondary btn-buynow"
-                onClick={() => handleAddToCart(displayProducts[indexes[1]])}
-              >
-                <img src={addToCartImg} />
-              </button>
-            </div>
-            <div className="item">
-              <img src={displayProducts[indexes[2]]?.image} alt="prod3" />
-              <button
-                className="btn btn-secondary btn-buynow"
-                onClick={() => handleAddToCart(displayProducts[indexes[2]])}
-              >
-                <img src={addToCartImg} />
-              </button>
-            </div>
+        <div className="d-flex flex-column flex-md-row justify-content-between my-3">
+          <div className="row row-cols-1 row-cols-md-3 g-3 justify-content-center">
+            {products.length === 0
+              ? [...Array(3)].map((_, i) => (
+                  <div key={i}>
+                    {ProductCard({
+                      product: null,
+                      key: i,
+                      onClick: handleAddToCart,
+                    })}
+                  </div>
+                ))
+              : products?.map((product: Product) => (
+                  <div key={product.id}>
+                    {ProductCard({
+                      product,
+                      key: product.id,
+                      onClick: handleAddToCart,
+                    })}
+                  </div>
+                ))}
           </div>
         </div>
 
