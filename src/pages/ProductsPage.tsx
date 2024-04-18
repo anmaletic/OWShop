@@ -59,12 +59,6 @@ const ProductsPage: React.FC = () => {
                 ))}
           </div>
         </div>
-
-        <div className="footer">
-          <div>
-            <p>OWShop © 2024 OWShop. All rights reserved.</p>
-          </div>
-        </div>
       </div>
     </>
   );

@@ -101,12 +101,6 @@ const ContactPage: React.FC = () => {
         </form>
         <p>{message}</p>
       </div>
-
-      <div className="footer">
-        <div>
-          <p>OWShop © 2024 OWShop. All rights reserved.</p>
-        </div>
-      </div>
     </>
   );
 };

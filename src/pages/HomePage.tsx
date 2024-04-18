@@ -80,12 +80,6 @@ const HomePage = () => {
           <img src={newProductImg} alt="" />
           <h1 className="coming-soon-text">Coming soon</h1>
         </div>
-
-        <div className="footer">
-          <div>
-            <p>OWShop © 2024 OWShop. All rights reserved.</p>
-          </div>
-        </div>
       </div>
     </>
   );

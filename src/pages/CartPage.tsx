@@ -80,11 +80,6 @@ const CartPage: React.FC = () => {
             Checkout
           </button>
         </div>
-        <div className="footer">
-          <div>
-            <p>OWShop © 2024 OWShop. All rights reserved.</p>
-          </div>
-        </div>
       </div>
     </>
   );
