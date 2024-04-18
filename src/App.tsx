@@ -6,21 +6,27 @@ import LoginPage from "./pages/LoginPage";
 import ProductsPage from "./pages/ProductsPage";
 import { CartProvider } from "./contexts/CartContext";
 import CartPage from "./pages/CartPage";
+import Footer from "./components/Footer";
 
 const App: React.FC = () => {
   return (
     <CartProvider>
       <>
         <BrowserRouter>
-          <NavBar />
-          <div className="page">
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/products" element={<ProductsPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/cart" element={<CartPage />} />
-              <Route path="/login" element={<LoginPage />} />
-            </Routes>
+          <div className="d-flex flex-column h-100">
+            <NavBar />
+            <div className="page">
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/products" element={<ProductsPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/cart" element={<CartPage />} />
+                <Route path="/login" element={<LoginPage />} />
+              </Routes>
+              <div className="flex-shrink-0 w-100">
+                <Footer />
+              </div>
+            </div>
           </div>
         </BrowserRouter>
       </>

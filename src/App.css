@@ -1,4 +1,7 @@
 :root {
+    --color-dark: #212529;
+    --color-light: #f8f9fa;
+
     --title-font: 'Exo 2', sans-serif;
     --body-font: 'Alegreya Sans';
     --font-size: 1.01rem;
@@ -15,8 +18,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 }
 
 #root{
-    height: calc(100vh - 56px);
-    padding: 0;
+    height: 100vh
 }
 
 .navbar-ext {
@@ -28,7 +30,6 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-y: auto;
     height: 100%;
 }
 .error {
@@ -40,8 +41,6 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-    height: 100%;
     gap: 100px;
 }
 
@@ -109,16 +108,6 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
     padding: 5px;
 }
 
-.footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-top: 1px solid #ccc;
-    color: #000;
-    height: 56px;
-    bottom: 0;
-    width: 100%;
-}
 
 /* Product page */
 .product-page {
@@ -161,8 +150,6 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 100%;
-    gap: 50px;
 }
 
 @media (max-width: 768px) {
@@ -286,4 +273,14 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
         height: 50vw;
     }
     
+}
+
+/* Footer  */
+.footerStyle {
+    background: var(--color-dark);
+    color: var(--color-light);
+}
+
+.footerStyle .bi {
+    font-size: 1.5rem;
 }
