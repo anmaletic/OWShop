@@ -27,12 +27,14 @@ const CartPage: React.FC = () => {
   return (
     <>
       <div className="container-xxl cart-page">
-        <h1>Cart</h1>
+        <div>
+          <h1 className="display-3 text-center">Cart</h1>
+        </div>
 
         <ul className="cart-grid">
           {cartItems?.map((item: CartItem) => (
-            <li className="cart-item-card" key={item.id}>
-              <div className="cart-item-header">
+            <li className="card border-1 my-1 p-1" key={item.id}>
+              <div className="card-title">
                 <h5>{item.product.title}</h5>
               </div>
               <div className="cart-item-content">
@@ -69,7 +71,6 @@ const CartPage: React.FC = () => {
             </li>
           ))}
         </ul>
-
         <div className="cart-checkout">
           <h4>Total: ${totalPrice.toFixed(2)}</h4>
           <button
@@ -79,7 +80,6 @@ const CartPage: React.FC = () => {
             Checkout
           </button>
         </div>
-
         <div className="footer">
           <div>
             <p>OWShop © 2024 OWShop. All rights reserved.</p>
