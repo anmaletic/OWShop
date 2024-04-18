@@ -45,7 +45,7 @@ const HomePage = () => {
 
   return (
     <>
-      <div className="container-xxl home-page">
+      <div className="container-xxl home-page mb-5">
         <div className="landing-page bg-danger">
           <img className="logo-background" src="../vite.svg" />
           <img className="logo-image" src={logoImg} />
