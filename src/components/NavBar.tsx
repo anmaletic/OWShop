@@ -13,7 +13,11 @@ const NavBar = () => {
         data-bs-theme="dark"
       >
         <div className="container-xxl">
-          <Link className="navbar-brand navbar-ext" to="/">
+          <Link
+            className="navbar-brand navbar-ext"
+            to="/"
+            onClick={() => setActiveLink("/")}
+          >
             <div
               data-bs-toggle="collapse"
               data-bs-target=".navbar-collapse.show"
