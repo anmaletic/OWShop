@@ -1,3 +1,19 @@
+:root {
+    --title-font: 'Exo 2', sans-serif;
+    --body-font: 'Alegreya Sans';
+    --font-size: 1.01rem;
+}
+
+html, body {
+    font-family: var(--body-font);
+    font-size: var(--font-size);
+    height: 100%;
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+    font-family: var(--title-font);
+}
+
 #root{
     height: calc(100vh - 56px);
     padding: 0;
@@ -188,15 +204,6 @@
     .cart-grid {
         padding: 0 10px;
     }
-}
-
-.cart-item-card {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-    width: 100%;
 }
 
 .cart-item-content {
