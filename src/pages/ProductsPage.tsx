@@ -37,10 +37,10 @@ const ProductsPage: React.FC = () => {
         </div>
 
         <div className="d-flex flex-column flex-md-row justify-content-between my-3">
-          <div className="row row-cols-1 row-cols-md-3 row-cols-xxl-4  justify-content-center justify-content-md-start">
+          <div className="row row-cols-1 row-cols-md-3 row-cols-xxl-4 g-3 justify-content-center ">
             {products.length === 0
               ? [...Array(10)].map((_, i) => (
-                  <div className="col mb-3" key={i}>
+                  <div key={i}>
                     {ProductCard({
                       product: null,
                       key: i,
@@ -49,7 +49,7 @@ const ProductsPage: React.FC = () => {
                   </div>
                 ))
               : products?.map((product: Product) => (
-                  <div className="col mb-3" key={product.id}>
+                  <div key={product.id}>
                     {ProductCard({
                       product,
                       key: product.id,
