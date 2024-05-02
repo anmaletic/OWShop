@@ -1,33 +1,19 @@
-import { useEffect, useState } from "react";
 import { Product } from "../interfaces/product";
 import { useCart } from "../contexts/CartContext";
-import { fetchProducts } from "../services/apiService";
 import ProductCard from "../components/ProductCard";
+import { useProducts } from "../hooks/useProducts";
 
 const ProductsPage: React.FC = () => {
-  const { addToCart, cartItems } = useCart();
-  const [products, setProducts] = useState<Product[]>([]);
-
-  useEffect(() => {
-    // simulate loading time
-    setTimeout(async () => {
-      setProducts(await fetchProducts());
-    }, 1000);
-
-    // const fetchDisplayProducts = async () => {
-    //   setProducts(await fetchProducts());
-    // };
-    // fetchDisplayProducts();
-  }, []);
+  const { addToCart } = useCart();
+  const { products, loading, error } = useProducts();
 
   const handleAddToCart = (product: Product) => {
     addToCart(product);
   };
 
-  // debug cartItems
-  useEffect(() => {
-    console.log(cartItems.length);
-  }, [cartItems]);
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <>
@@ -38,7 +24,7 @@ const ProductsPage: React.FC = () => {
 
         <div className="d-flex flex-column flex-md-row justify-content-between my-3">
           <div className="row row-cols-1 row-cols-md-3 row-cols-xxl-4 g-3 justify-content-center ">
-            {products.length === 0
+            {loading
               ? [...Array(10)].map((_, i) => (
                   <div key={i}>
                     {ProductCard({
