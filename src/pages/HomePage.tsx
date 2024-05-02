@@ -1,47 +1,30 @@
-import { useEffect, useState } from "react";
 import { Product } from "../interfaces/product";
 import newProductImg from "../assets/newProduct.jpg";
 import logoImg from "../assets/owshop_logo.png";
 import { useCart } from "../contexts/CartContext";
-import { fetchProductById } from "../services/apiService";
 import ProductCard from "../components/ProductCard";
+import { generateUniqueRandomIndexes } from "../utils/util";
+import { useProducts } from "../hooks/useProducts";
+import { useEffect, useState } from "react";
 
 const HomePage = () => {
   const { addToCart } = useCart();
-  const [products, setProducts] = useState<Product[]>([]);
+  const { products, loading, error } = useProducts();
+  const [indexes, setIndexes] = useState<number[]>([]);
 
   useEffect(() => {
-    const generateUniqueRandomIndexes = (
-      count: number,
-      maxIndex: number
-    ): number[] => {
-      const indexes = new Set<number>();
-      while (indexes.size < count) {
-        indexes.add(Math.floor(Math.random() * maxIndex));
-      }
-      return Array.from(indexes);
-    };
+    setIndexes(generateUniqueRandomIndexes(3, 19));
+  }, [setIndexes]);
 
-    const indexes = generateUniqueRandomIndexes(3, 19);
-
-    const fetchAndSetProducts = async () => {
-      const promises = indexes.map(async (productId) => {
-        return fetchProductById(productId);
-      });
-
-      // simulate loading time
-      setTimeout(async () => {
-        const tempProduct = await Promise.all(promises);
-        setProducts(tempProduct);
-      }, 1000);
-    };
-
-    fetchAndSetProducts();
-  }, []);
+  // const indexes = generateUniqueRandomIndexes(3, 19);
 
   const handleAddToCart = (product: Product) => {
     addToCart(product);
   };
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <>
@@ -53,7 +36,7 @@ const HomePage = () => {
 
         <div className="d-flex flex-column flex-md-row justify-content-between my-3">
           <div className="row row-cols-1 row-cols-md-3 g-3 justify-content-center">
-            {products.length === 0
+            {loading
               ? [...Array(3)].map((_, i) => (
                   <div key={i}>
                     {ProductCard({
@@ -63,11 +46,11 @@ const HomePage = () => {
                     })}
                   </div>
                 ))
-              : products?.map((product: Product) => (
-                  <div key={product.id}>
+              : indexes.map((index: number) => (
+                  <div key={index}>
                     {ProductCard({
-                      product,
-                      key: product.id,
+                      product: products[index],
+                      key: index,
                       onClick: handleAddToCart,
                     })}
                   </div>
