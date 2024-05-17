@@ -29,7 +29,7 @@ const LoginPage: React.FC = () => {
     try {
       userToken = await login(data.username, data.password);
 
-      if (userToken != "") {
+      if (userToken !== "") {
         console.log("Login successful!");
         setMessage("Login successful!");
       } else {
